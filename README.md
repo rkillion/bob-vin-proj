@@ -1,3 +1,26 @@
+# Vincent and Bob Project
+## Goal
+Create a video game preview app for developers that allows the user to see video games and follow a link to their github page. The app is designed to help developers. They can share their games and view other games for feature ideas and help.
+
+## Timeline
+- Monday: Ruby / database setup / JSON setup
+- Tuesday: React app / preview area, thumbnails, selection
+- Wednesday: React app cont. / CSS
+- Thursday: Search, Submission, Fixes / security
+- Friday: Bugs / Presentation
+## Features
+### UI
+- [Whiteboard for UI](https://miro.com/app/board/o9J_lxI_KJY=/)
+- Users can search for games based on title, developer, features, comments, keywords
+- Users can view games
+  - Preview area: video preview, game specs, sources tab
+  - Users can click on a game thumbnail to view a preview and specs
+  - Users can click link to specific files in the github repo
+- Users can submit a project using a submission form
+### Database
+- [Data Outline](https://docs.google.com/spreadsheets/d/1zomd6e1GbeLFBx2vu7KXou0LYh4tNY8WBveUmDBVoyA/edit?usp=sharing)
+- Game, Feature, Developer 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
