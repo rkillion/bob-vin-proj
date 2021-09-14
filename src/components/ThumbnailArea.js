@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Thumbnail from "./Thumbnail";
 
 const RowBox = styled.div`
 display: flex;
@@ -6,10 +7,16 @@ flex-flow: row wrap;
 border: 1px solid black;
 `;
 
-function ThumbnailArea() {
+function ThumbnailArea({ games, setGameSelection }) {
     return (
         <RowBox>
-            This is the ThumbnailArea.
+            {games ? games.map(
+                game => <Thumbnail 
+                    key={game.id}
+                    game={game}
+                    setGameSelection={setGameSelection}
+                    />
+            ) : "Loading Games..."}
         </RowBox>
     )
 }

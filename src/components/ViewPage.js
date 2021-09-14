@@ -33,7 +33,10 @@ function ViewPage() {
             <PreviewArea 
                 selectedGame={games ? games.find(e=> e.id === gameSelection) : {}}
             />
-            <ThumbnailArea />
+            <ThumbnailArea 
+                games={games}
+                setGameSelection={setGameSelection}
+            />
         </Page>
     )
 }

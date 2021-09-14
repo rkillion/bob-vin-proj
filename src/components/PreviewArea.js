@@ -15,7 +15,9 @@ function PreviewArea({ selectedGame }) {
         <RowBox>
             This is the PreviewArea.
             A video would go here.
-            <InformationWindow />
+            <InformationWindow 
+                selectedGame={selectedGame}
+            />
         </RowBox>
     )
 }

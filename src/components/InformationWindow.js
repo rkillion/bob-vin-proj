@@ -8,13 +8,14 @@ const ColumnBox = styled.div`
     border: 1px solid black;
 `;
 
-function InformationWindow() {
+function InformationWindow({ selectedGame }) {
     return (
         <ColumnBox>
-            This is the InformationWindow.
-            A header goes here.
+            <h2>{selectedGame ? selectedGame.title : ""}</h2>
             <InfoNav />
-            <InfoContent />
+            {selectedGame ? <InfoContent
+                selectedGame={selectedGame}
+            /> : "Loading Info..."}
         </ColumnBox>
     )
 }

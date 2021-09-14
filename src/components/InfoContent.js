@@ -6,10 +6,12 @@ const ColumnBox = styled.div`
     border: 1px solid black;
 `;
 
-function InfoContent() {
+function InfoContent({ selectedGame }) {
     return (
         <ColumnBox>
-            This is the InfoContent.
+            <li>{selectedGame.developer.name}</li>
+            <li>Features: {selectedGame.game_features.map(feature => feature.feature.title).join(", ")}</li>
+            <li>{selectedGame.description}</li>
         </ColumnBox>
     )
 }
