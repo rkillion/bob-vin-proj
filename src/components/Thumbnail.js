@@ -16,7 +16,7 @@ function Thumbnail({ game, setGameSelection }) {
 
     return (
         <ColumnBox onClick={handleClick}>
-            <p>{game.title}</p>
+            <img src={`https://img.youtube.com/vi/${game.preview_href}/mqdefault.jpg`} alt={`${game.preview_href}`} ></img>
         </ColumnBox>
     )
 }

@@ -13,8 +13,10 @@ function PreviewArea({ selectedGame }) {
 
     return (
         <RowBox>
-            This is the PreviewArea.
-            A video would go here.
+            {selectedGame? <iframe width={320*2.75} height={(320*2.75)*.5625} src={`https://www.youtube.com/embed/${selectedGame.preview_href}`}>
+            video isn't supportes
+            </iframe> : "loading..."}
+            
             <InformationWindow 
                 selectedGame={selectedGame}
             />
