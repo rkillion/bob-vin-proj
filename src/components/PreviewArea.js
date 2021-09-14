@@ -8,7 +8,9 @@ const RowBox = styled.div`
     border: 1px solid black;
 `;
 
-function PreviewArea() {
+function PreviewArea({ selectedGame }) {
+    console.log("Selected Game is: ", selectedGame);
+
     return (
         <RowBox>
             This is the PreviewArea.
