@@ -6,6 +6,7 @@ const ColumnBox = styled.div`
     display: flex;
     flex-flow: column wrap;
     border: 1px solid black;
+    width: 30%;
 `;
 
 function InformationWindow({ selectedGame }) {
