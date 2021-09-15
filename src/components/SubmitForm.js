@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const FormBox = styled.form`
@@ -44,18 +44,28 @@ function SubmitForm({ developers }) {
         e.preventDefault();
         //add the developer to the list in state
         //add the game to the list in state
-        console.log(e.target.newDeveloper.value)
+        console.log("Select value is: ",e.target.selectedDeveloper.value)
+        console.log(formData)
     }
 
     const handleFormChange = e => {
-        // let field;
-        // switch (e.target.name) {
-        //     case "newDeveloper" :
-        //         field = "developer";
-        //         break;
-        //     default:
-        //         field = undefined;
-        // }
+        let field;
+        switch (e.target.name) {
+            case "newDeveloper" :
+                field = "developer";
+                break;
+            case "selectedDeveloper" :
+                field = "developer";
+                break;
+            case "newDeveloperGithub" :
+                field = "developer_github";
+                break;
+            default:
+                field = undefined;
+        }
+        let newData = JSON.parse(JSON.stringify(formData));
+        newData[field] = e.target.value
+        setFormData(newData);
     }
 
     return (
@@ -64,7 +74,12 @@ function SubmitForm({ developers }) {
                 <h2>Developer Info</h2>
                 <FormRow>
                     <p>Select a Developer: </p>
-                    <SelectorInput>
+                    <SelectorInput
+                        name="selectedDeveloper"
+                        value={formData.developer}
+                        onChange={handleFormChange}
+                    >
+                        <option>{""}</option>
                         {developers[0] ? developers.map(developer=><option key={developer.id}>{developer.name}</option>) : ""}
                     </SelectorInput>
                 </FormRow>
@@ -73,6 +88,13 @@ function SubmitForm({ developers }) {
                     <p>New Developer: </p>
                     <TextInput 
                         name="newDeveloper"
+                        value={formData.developer}
+                        onChange={handleFormChange}
+                    />
+                    <TextInput 
+                        name="newDeveloperGithub"
+                        value={formData.developer_github}
+                        onChange={handleFormChange}
                     />
                 </FormRow>
             </FormSection>
