@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import GameFeatureInput from "./GameFeatureInput";
 
 const FormBox = styled.form`
     display: flex;
@@ -65,11 +66,9 @@ function SubmitForm({ developers }) {
         file_size: 0,
         ["keyboard?"]: false,
         ["controller?"]: false,
-        game_features: {
-            feature_explanation: "",
-            feature: ""
-        }
+        game_features: []
     });
+    const [gameFeatureInputs,setGameFeatureInputs] = useState([]);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -134,6 +133,15 @@ function SubmitForm({ developers }) {
             newData[field] = e.target.value
         }
         setFormData(newData);
+    }
+
+    function addFeature() {
+        let newFeature = {
+            compID: gameFeatureInputs.length+1,
+            feature_explanation: "",
+            feature: ""
+        };
+        setGameFeatureInputs([...gameFeatureInputs,newFeature]);
     }
 
     return (
@@ -242,6 +250,17 @@ function SubmitForm({ developers }) {
                         </FormRow>
                     </FormSection>
                 </FormRow>
+            </FormSection>
+            <FormSection>
+                <FormSectionHeader>Features</FormSectionHeader>
+                {gameFeatureInputs.map(feature=>{
+                    return (<GameFeatureInput 
+                        key={feature.compID}
+                    />)
+                })}
+                <button
+                    onClick={addFeature}
+                >Add Feature</button>
             </FormSection>
             <button type="submit">Submit</button>
         </FormBox>
