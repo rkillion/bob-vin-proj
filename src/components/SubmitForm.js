@@ -54,7 +54,7 @@ const InputLabel = styled.label`
 
 let nextGameFeatureId = 1;
 
-function SubmitForm({ developers, features }) {
+function SubmitForm({ developers, features, fetchAddress }) {
     const [formData,setFormData] = useState({
         developer: {
             name: "",
@@ -79,7 +79,13 @@ function SubmitForm({ developers, features }) {
         //add the game to the list in state
         let finalData = JSON.parse(JSON.stringify(formData));
         finalData.game_features = JSON.parse(JSON.stringify(gameFeatureInputs));
-        console.log(finalData);
+        fetch(fetchAddress("games"),{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(finalData)
+        }).then(r=>r.json()).then(console.log);
     }
 
     const handleFormChange = e => {

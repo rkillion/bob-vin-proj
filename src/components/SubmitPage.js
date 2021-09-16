@@ -39,6 +39,7 @@ function SubmitPage() {
             <SubmitForm 
                 developers={developers}
                 features={features}
+                fetchAddress={fetchAddress}
             />
         </Page>
     )
