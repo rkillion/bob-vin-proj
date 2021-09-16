@@ -5,6 +5,16 @@ const RowBox = styled.div`
 display: flex;
 flex-flow: row wrap;
 border: 1px solid black;
+border-radius: 10px;
+margin-top:19vh;
+margin-left: .6vw;
+padding:5px;
+gap: 5px;
+background-color:#111;
+width:98vw;
+
+
+
 `;
 
 function ThumbnailArea({ games, setGameSelection }) {

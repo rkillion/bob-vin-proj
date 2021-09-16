@@ -5,6 +5,7 @@ const FormRow = styled.div`
     flex-flow: row wrap;
     justify-content: flex-start;
     border: 1px solid black;
+    background-color: yellow;
 `;
 
 function GameFeatureInput() {

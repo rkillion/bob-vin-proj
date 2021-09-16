@@ -7,6 +7,11 @@ const ColumnBox = styled.div`
     flex-flow: column wrap;
     border: 1px solid black;
     width: 30%;
+    height:50vh;
+    padding: 5px;
+    border-radius: 10px;
+    margin-top:9vh;
+    background-color:#111111;
 `;
 
 function InformationWindow({ selectedGame }) {
