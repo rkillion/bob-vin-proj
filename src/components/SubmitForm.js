@@ -28,6 +28,7 @@ const FormRow = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
+    align-items: center;
     border: 1px solid black;
 `;
 
@@ -39,7 +40,7 @@ const TextInput = styled.input`
 `;
 
 const TextAreaInput = styled.textarea`
-    width: 70%;
+    width: 65%;
     min-width: 200px;
     min-height: 100px;
 `;
@@ -51,7 +52,9 @@ const InputLabel = styled.label`
 
 `;
 
-function SubmitForm({ developers }) {
+let nextGameFeatureId = 1;
+
+function SubmitForm({ developers, features }) {
     const [formData,setFormData] = useState({
         developer: {
             name: "",
@@ -74,7 +77,9 @@ function SubmitForm({ developers }) {
         e.preventDefault();
         //add the developer to the list in state
         //add the game to the list in state
-        console.log(formData)
+        let finalData = JSON.parse(JSON.stringify(formData));
+        finalData.game_features = JSON.parse(JSON.stringify(gameFeatureInputs));
+        console.log(finalData);
     }
 
     const handleFormChange = e => {
@@ -135,13 +140,31 @@ function SubmitForm({ developers }) {
         setFormData(newData);
     }
 
-    function addFeature() {
+    function addFeature(e) {
+        e.stopPropagation();
         let newFeature = {
-            compID: gameFeatureInputs.length+1,
+            compID: nextGameFeatureId,
             feature_explanation: "",
             feature: ""
         };
+        nextGameFeatureId++;
         setGameFeatureInputs([...gameFeatureInputs,newFeature]);
+    }
+
+    function handleGameFeatureChange(e,gameFeatureID) {
+        let newGameFeatureInputs = JSON.parse(JSON.stringify(gameFeatureInputs));
+        if (e.target.name==="feature"||e.target.name==="newFeature") {
+            newGameFeatureInputs.find(f=>f.compID===gameFeatureID).feature = e.target.value;
+        }
+        if (e.target.name==="featureExplanation") {
+            newGameFeatureInputs.find(f=>f.compID===gameFeatureID).feature_explanation = e.target.value;
+        }
+        setGameFeatureInputs(newGameFeatureInputs)
+    }
+
+    function deleteGameFeatureField(gameFeatureID) {
+        let filteredInputs = gameFeatureInputs.filter(feature=>feature.compID!==gameFeatureID);
+        setGameFeatureInputs(filteredInputs);
     }
 
     return (
@@ -256,10 +279,15 @@ function SubmitForm({ developers }) {
                 {gameFeatureInputs.map(feature=>{
                     return (<GameFeatureInput 
                         key={feature.compID}
+                        gameFeatureInput={feature}
+                        handleGameFeatureChange={handleGameFeatureChange}
+                        features={features}
+                        deleteGameFeatureField={deleteGameFeatureField}
                     />)
                 })}
                 <button
                     onClick={addFeature}
+                    type="button"
                 >Add Feature</button>
             </FormSection>
             <button type="submit">Submit</button>
@@ -268,3 +296,4 @@ function SubmitForm({ developers }) {
 }
 
 export default SubmitForm;
+export { FormRow, SelectorInput, TextAreaInput, InputLabel, TextInput };
