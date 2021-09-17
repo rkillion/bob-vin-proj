@@ -8,7 +8,6 @@ import { API } from "../api";
 const Page = styled.div`
     display: flex;
     flex-flow: column wrap;
-    
     height: 100vh;
     color: #fff;
 `;
@@ -25,6 +24,7 @@ function ViewPage() {
         let address = id ? `${API}/games/${id}` : `${API}/games`;
         fetch(address).then(r=>r.json()).then(data=>{
             setGames(data);
+            setGameSelection(data[0].id);
         });
     }
 

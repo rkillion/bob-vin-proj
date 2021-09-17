@@ -14,9 +14,11 @@ const ColumnBox = styled.div`
 function InfoContent({ selectedGame }) {
     return (
         <ColumnBox>
-            <li>{selectedGame.developer.name}</li>
-            <li>Features: {selectedGame.game_features.map(feature => feature.feature.title).join(", ")}</li>
-            <li>{selectedGame.description}</li>
+            <p>By: <a href={selectedGame.developer.github_profile}>{selectedGame.developer.name}</a><br></br>
+            Coded in {selectedGame.language}<br></br>
+            Features: {selectedGame.game_features.map(feature => feature.feature.title).join(", ")}<br></br>
+            {selectedGame.description}
+            </p>
         </ColumnBox>
     )
 }

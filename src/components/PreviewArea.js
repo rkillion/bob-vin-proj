@@ -5,7 +5,6 @@ const RowBox = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
-    
     height: 50vh;
     
      

@@ -18,7 +18,7 @@ function InformationWindow({ selectedGame }) {
     return (
         <ColumnBox>
             <h2>{selectedGame ? selectedGame.title : ""}</h2>
-            <InfoNav />
+            <InfoNav selectedGame={selectedGame}/>
             {selectedGame ? <InfoContent
                 selectedGame={selectedGame}
             /> : "Loading Info..."}

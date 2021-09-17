@@ -11,10 +11,12 @@ const RowBox = styled.div`
 
 `;
 
-function InfoNav() {
+function InfoNav({ selectedGame }) {
     return (
         <RowBox>
-            This is the InfoNav.
+           {selectedGame ? 
+           selectedGame.github_link? <a href={selectedGame.github_link }>GitHub Repository</a> : `No repository found :(`
+           :''}
         </RowBox>
     )
 }
