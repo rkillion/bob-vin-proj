@@ -1,3 +1,4 @@
+import { useHistory } from "react-router";
 import styled from "styled-components";
 
 const Page = styled.div`
@@ -7,6 +8,7 @@ border: 1px solid black;
 height: 10vh;
 background-color: #111111;
 `;
+
 const Creators = styled.div`
 display: flex;
 flex-flow: column wrap;
@@ -18,6 +20,7 @@ margin-top: 1.5vh;
 width: 17vw;
 background-color: #191919;
 `;
+
 const Button = styled.button`
     color: white;
     background-color: #444;
@@ -30,7 +33,10 @@ const Button = styled.button`
     width: 4.5vw;
     align-self: center;
 `;
+
 function SearchArea() {
+    const history = useHistory();
+
     return (
         <Page>
             <h1>Game Developer Hub</h1>
@@ -38,6 +44,10 @@ function SearchArea() {
             <h2>Creators: </h2><Button onClick={()=>{window.open("https://www.linkedin.com/in/robert-killion-51a45098/")}}>Bob</Button>
              <Button onClick={()=>{window.open("https://www.linkedin.com/in/vincent-orsini-73a14a218/")}}>Vincent</Button>
             </Creators>
+            <Button
+                type="button"
+                onClick={()=>history.push("/submit")}
+            >Post A Game</Button>
         </Page>
     )
 }
