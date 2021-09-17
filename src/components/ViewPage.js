@@ -25,6 +25,7 @@ function ViewPage() {
         let address = id ? `${API}/games/${id}` : `${API}/games`;
         fetch(address).then(r=>r.json()).then(data=>{
             setGames(data);
+            setGameSelection(data[0].id);
         });
     }
 
