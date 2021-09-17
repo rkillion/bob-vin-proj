@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import GameFeatureInput from "./GameFeatureInput";
+import { FormButton } from "./SubmitPage";
 
 const FormBox = styled.form`
     display: flex;
@@ -8,6 +10,7 @@ const FormBox = styled.form`
     justify-content: space-evenly;
     padding: 5px;
     border: 1px solid black;
+    background-color: #222;
 `;
 
 const FormSection = styled.div`
@@ -16,8 +19,11 @@ const FormSection = styled.div`
     justify-content: space-evenly;
     align-items: stretch;
     align-content: stretch;
-    padding: 5px;
+    margin: 10px;
+    padding: 10px;
     border: 1px solid black;
+    background-color: #111;
+    border-radius: 10px;
 `;
 
 const FormSectionHeader = styled.h2`
@@ -29,20 +35,29 @@ const FormRow = styled.div`
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid black;
+`;
+
+const FormColumn = styled.div`
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: stretch;
+    padding: 5px;
 `;
 
 const SelectorInput = styled.select`
-
+    border-radius: 5px;
 `;
 
 const TextInput = styled.input`
+    border-radius: 5px;
 `;
 
 const TextAreaInput = styled.textarea`
     width: 65%;
     min-width: 200px;
     min-height: 100px;
+    border-radius: 10px;
 `;
 
 const CheckBox = styled.input`
@@ -72,6 +87,7 @@ function SubmitForm({ developers, features, fetchAddress }) {
         game_features: []
     });
     const [gameFeatureInputs,setGameFeatureInputs] = useState([]);
+    const history = useHistory();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -86,6 +102,7 @@ function SubmitForm({ developers, features, fetchAddress }) {
             },
             body: JSON.stringify(finalData)
         }).then(r=>r.json()).then(console.log);
+        history.push("/");
     }
 
     const handleFormChange = e => {
@@ -240,7 +257,7 @@ function SubmitForm({ developers, features, fetchAddress }) {
                         onChange={handleFormChange}
                         placeholder="Description"
                     />
-                    <FormSection>
+                    <FormColumn>
                         <FormRow>
                             <CheckBox 
                                 type="checkbox"
@@ -277,7 +294,7 @@ function SubmitForm({ developers, features, fetchAddress }) {
                                 Game controller?
                             </InputLabel>
                         </FormRow>
-                    </FormSection>
+                    </FormColumn>
                 </FormRow>
             </FormSection>
             <FormSection>
@@ -291,15 +308,15 @@ function SubmitForm({ developers, features, fetchAddress }) {
                         deleteGameFeatureField={deleteGameFeatureField}
                     />)
                 })}
-                <button
+                <FormButton
                     onClick={addFeature}
                     type="button"
-                >Add Feature</button>
+                >Add Feature</FormButton>
             </FormSection>
-            <button type="submit">Submit</button>
+            <FormButton type="submit">Submit</FormButton>
         </FormBox>
     )
 }
 
 export default SubmitForm;
-export { FormRow, SelectorInput, TextAreaInput, InputLabel, TextInput };
+export { FormRow, SelectorInput, TextAreaInput, InputLabel, TextInput, FormColumn };
