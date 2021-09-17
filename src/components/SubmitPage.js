@@ -13,6 +13,7 @@ const RowBox = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    align-items: center;
     border: 1px solid black;
 `;
 
@@ -21,7 +22,8 @@ function SubmitPage() {
     const [features,setFeatures] = useState([]);
 
     useEffect(()=> {
-        fetch(fetchAddress("developers")).then(r=>r.json().then(data=>{setDevelopers(data)}))
+        fetch(fetchAddress("developers")).then(r=>r.json().then(data=>{setDevelopers(data)}));
+        fetch(fetchAddress("features")).then(r=>r.json().then(data=>{setFeatures(data)}));
     },[])
 
     function fetchAddress(dataTable,id="") {
@@ -36,6 +38,8 @@ function SubmitPage() {
             </RowBox>
             <SubmitForm 
                 developers={developers}
+                features={features}
+                fetchAddress={fetchAddress}
             />
         </Page>
     )
