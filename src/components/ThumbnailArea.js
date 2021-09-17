@@ -9,12 +9,9 @@ border-radius: 10px;
 margin-top:19vh;
 margin-left: .6vw;
 padding:5px;
-
+gap: 5px;
 background-color:#111;
 width:98vw;
-
-
-
 `;
 
 // gap: 5px;
